@@ -1,0 +1,32 @@
+[project]
+name = "ai-financial-support-platform-backend"
+version = "0.1.0"
+description = "Financial AI agent backend"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "python-multipart",
+    "pydantic-settings",
+    "sqlalchemy",
+    "asyncpg",
+    "httpx",
+    "pgvector",
+    "pypdf",
+    "google-genai",
+    "python-json-logger",
+    "PyJWT",
+    "passlib[bcrypt]",
+    "redis",
+    "argon2-cffi",
+    "openai",
+    "groq",
+    "pytest",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = false
