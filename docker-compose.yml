@@ -9,7 +9,11 @@
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      # Reuses the Postgres data volume from the legacy compose in `backend/docker`
+      # (Compose project name `docker` → volume name `docker_pgdata`).
+      # If `docker compose up` fails with "volume not found", run: docker volume ls | findstr pgdata
+      # and set `name:` below to match your actual volume name.
+      - docker_pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d agent_db"]
       interval: 10s
@@ -19,8 +23,6 @@
   redis:
     image: redis:7-alpine
     container_name: afsp_redis
-    ports:
-      - "6379:6379"
     volumes:
       - redis_data:/data
     healthcheck:
@@ -66,5 +68,7 @@
       - "5173:5173"
 
 volumes:
-  postgres_data:
+  docker_pgdata:
+    external: true
+    name: docker_pgdata
   redis_data:
