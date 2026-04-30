@@ -2,6 +2,8 @@
 docs/
 bd/
 frontend-vite/
+!frontend/src/docs/
+!frontend/src/docs/**
 
 # Environment files
 .env
